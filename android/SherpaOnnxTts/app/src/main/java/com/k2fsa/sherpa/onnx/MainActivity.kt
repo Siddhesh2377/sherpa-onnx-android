@@ -58,11 +58,11 @@ class MainActivity : AppCompatActivity() {
         play.setOnClickListener { onClickPlay() }
         stop.setOnClickListener { onClickStop() }
 
-        sid.setText("0")
-        speed.setText("1.0")
+        sid.setText("30")
+        speed.setText("0.8")
 
         // we will change sampleText here in the CI
-        val sampleText = ""
+        val sampleText = "Hey There, I am Neuro V, Here to Help You with the setup."
         text.setText(sampleText)
 
         play.isEnabled = false
@@ -219,9 +219,9 @@ class MainActivity : AppCompatActivity() {
         dictDir = null
 
         // Example 1:
-        // modelDir = "vits-vctk"
-        // modelName = "vits-vctk.onnx"
-        // lexicon = "lexicon.txt"
+         modelDir = "vits-vctk"
+         modelName = "vits-vctk.onnx"
+         lexicon = "lexicon.txt"
 
         // Example 2:
         // https://github.com/k2-fsa/sherpa-onnx/releases/tag/tts-models
@@ -276,20 +276,20 @@ class MainActivity : AppCompatActivity() {
 
         // Example 9
         // kokoro-en-v0_19
-        // modelDir = "kokoro-en-v0_19"
-        // modelName = "model.onnx"
-        // voices = "voices.bin"
-        // dataDir = "kokoro-en-v0_19/espeak-ng-data"
+//         modelDir = "kokoro-en-v0_19"
+//         modelName = "model.onnx"
+//         voices = "voices.bin"
+//         dataDir = "kokoro-en-v0_19/espeak-ng-data"
 
         // Example 10
-        // kokoro-multi-lang-v1_0
-        // modelDir = "kokoro-multi-lang-v1_0"
-        // modelName = "model.onnx"
-        // voices = "voices.bin"
-        // dataDir = "kokoro-multi-lang-v1_0/espeak-ng-data"
-        // dictDir = "kokoro-multi-lang-v1_0/dict"
-        // lexicon = "kokoro-multi-lang-v1_0/lexicon-us-en.txt,kokoro-multi-lang-v1_0/lexicon-zh.txt"
-        // ruleFsts = "$modelDir/phone-zh.fst,$modelDir/date-zh.fst,$modelDir/number-zh.fst"
+        // kokoro-en-v0_19
+//         modelDir = "kokoro-en-v0_19"
+//         modelName = "model.onnx"
+//         voices = "voices.bin"
+//         dataDir = "kokoro-en-v0_19/espeak-ng-data"
+//         dictDir = "kokoro-en-v0_19/dict"
+//         lexicon = "kokoro-en-v0_19/lexicon-us-en.txt,kokoro-en-v0_19/lexicon-zh.txt"
+//         ruleFsts = "$modelDir/phone-zh.fst,$modelDir/date-zh.fst,$modelDir/number-zh.fst"
 
         if (dataDir != null) {
             val newDir = copyDataDir(dataDir!!)
@@ -305,8 +305,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         val config = getOfflineTtsConfig(
-            modelDir = modelDir!!,
-            modelName = modelName ?: "",
+            modelDir = modelDir,
+            modelName = modelName,
             acousticModelName = acousticModelName ?: "",
             vocoder = vocoder ?: "",
             voices = voices ?: "",
@@ -315,7 +315,7 @@ class MainActivity : AppCompatActivity() {
             dictDir = dictDir ?: "",
             ruleFsts = ruleFsts ?: "",
             ruleFars = ruleFars ?: "",
-        )!!
+        )
 
         tts = OfflineTts(assetManager = assets, config = config)
     }
